@@ -4,6 +4,9 @@ import router from './router'
 
 import './network/request'
 
+//按需导入vant
+import './vant'
+
 Vue.config.productionTip = false
 
 new Vue({
