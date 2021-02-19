@@ -1,6 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+//解决重复路由
+const originalReplace = VueRouter.prototype.replace
+
+VueRouter.prototype.replace = function replace(location) {
+  return originalReplace.call(this, location).catch(err => err)
+}
+
 Vue.use(VueRouter)
 
 const Home = () => import ("views/home/Home")

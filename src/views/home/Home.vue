@@ -1,13 +1,17 @@
 <template>
-  <div>首页</div>
+  <div>
+ 
+  </div>
 </template>
 
 <script>
 export default {
+  components: { 
 
+   },
 }
 </script>
 
-<style scoped>
+<style lang='scss' scoped>
 
 </style>
