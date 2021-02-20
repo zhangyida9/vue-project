@@ -17,7 +17,8 @@
 export default {
   computed: {
     isActive() {
-      return this.$route.path.indexOf(this.path) !== -1 ? true : false
+      // return this.$route.path.indexOf(this.path) !== -1 ? true : false
+      return this.$route.path.includes(this.path)
     },
     activeStyle() {
       return this.isActive ? {color: this.activeColor} : {}
