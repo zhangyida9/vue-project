@@ -2,23 +2,30 @@
   <div>
     <home-nav-bar/>
     <swiper :banners="banners"></swiper>
+    <recommend-view :recommends="recommends"></recommend-view>
+    <feture-view/>
   </div>
 </template>
 
 <script>
 import HomeNavBar from "./child/HomeNavBar"
 import Swiper from "./child/Swiper"
+import RecommendView from "./child/RecommendView"
+import FetureView from "./child/FetureView"
 
 import { getHomeMutilData } from "network/home"
  
 export default {
   components: {
     HomeNavBar,
-    Swiper
+    Swiper,
+    RecommendView,
+    FetureView
    },
    data() {
      return {
-       banners: []
+       banners: [],
+       recommends: []
      }
    },
    created() {
@@ -27,8 +34,9 @@ export default {
    methods: {
      getHomeMutil() {
        return getHomeMutilData().then(res =>{
-        //  console.log(res)
+         console.log(res)
          this.banners = res.data.banner.list
+         this.recommends = res.data.recommend.list
        })
      }
    }

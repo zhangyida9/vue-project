@@ -18,6 +18,7 @@ export default {
 
 <style lang='scss' scoped>
 .nav-bar {
+  height: 49px;
   background-color: #ff8198;
   div {
     font-size: 18px;
