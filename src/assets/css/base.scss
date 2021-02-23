@@ -1,11 +1,15 @@
-@charset "UTF-8";
-@import url(normalize.min.css);
+@import "normalize.min.css";
+
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0; }
+  padding: 0;
+}
 
-/*:root -> 鑾峰彇鏍瑰厓绱爃tml*/
+$color-high-text: #ff5777;
+$color-background-pink:  #ff8198;
+$color-background-white:#fff;
+/*:root -> 获取根元素html*/
 body,
 html {
   font-family: -apple-system, "MIUI";
@@ -14,18 +18,21 @@ html {
   color: #666666;
   background: #ffffff;
   font-size: 14px;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
 
 a {
   text-decoration: none;
-  color: #666666; }
+  color: #666666;
+}
 
 .clear-fix:after {
   font-size: 0;
   display: block;
   clear: both;
   height: 0;
-  content: ""; }
+  content: "";
+}
 
 .arrow-right {
   display: inline-block;
@@ -35,23 +42,25 @@ a {
   transform: rotate(135deg);
   border-top: 1px solid #999999;
   border-left: 1px solid #999999;
-  background-color: transparent; }
+  background-color: transparent;
+}
 
 .left {
-  float: left; }
+  float: left;
+}
 
 .right {
-  float: right; }
+  float: right;
+}
 
 #app {
   font-size: 16px;
   overflow-x: hidden;
   width: 100%;
-  height: 100%; }
-
+  height: 100%;
+}
 .nowrap {
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; }
-
-/*# sourceMappingURL=base.css.map */
+  text-overflow: ellipsis;
+}
