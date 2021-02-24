@@ -1,17 +1,20 @@
 <template>
-  <div>
+  <div class="home">
     <home-nav-bar/>
-    <swiper :banners="banners"></swiper>
-    <recommend-view :recommends="recommends"></recommend-view>
-    <feture-view/>
-    <tab-control :titles="titles" @itemClick="itemClick"/>
-    <goods-list :goods="goods[currentTitles].list"/>
+    <scroll :isPullUpLoad="true" :whatProbeType="3" @onPullingUp="loadMore" class="scroll" ref="scroll">
+      <swiper :banners="banners"></swiper>
+      <recommend-view :recommends="recommends"></recommend-view>
+      <feture-view/>
+      <tab-control :titles="titles" @itemClick="itemClick" ref="tabControl"/>
+      <goods-list :goods="goods[currentTitles].list"/>
+    </scroll>
   </div>
 </template>
 
 <script>
 import TabControl from "components/content/tabcontrol/TabControl"
 import GoodsList from "components/content/goods/GoodsList"
+import Scroll from "components/common/scroll/Scroll"
 
 import HomeNavBar from "./child/HomeNavBar"
 import Swiper from "./child/Swiper"
@@ -24,6 +27,7 @@ export default {
   components: {
     TabControl,
     GoodsList,
+    Scroll,
     HomeNavBar,
     Swiper,
     RecommendView,
@@ -62,6 +66,7 @@ export default {
          let data = res.data.list
          this.goods[type].list.push(...data)
          this.goods[type].page += 1
+         this.$refs.scroll && this.$refs.scroll.finishLoad()
         //  console.log(res)
        })
      },
@@ -77,12 +82,26 @@ export default {
            this.currentTitles = 'sell'
            break
        }
-
+       this.$refs.tabControl.currentIndex = index
+     },
+     loadMore() {
+       this.getHomeGoods(this.currentTitles)
      }
    }
 }
 </script>
 
 <style lang='scss' scoped>
-
+.home {
+  position: relative;
+  height: 100vh;
+}
+.scroll{
+  overflow: hidden;
+  position: absolute;
+  top: 48px;
+  right: 0;
+  left: 0;
+  bottom: 54px;
+}
 </style>
