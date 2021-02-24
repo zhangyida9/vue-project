@@ -4,7 +4,7 @@
     <swiper :banners="banners"></swiper>
     <recommend-view :recommends="recommends"></recommend-view>
     <feture-view/>
-    <tab-control :titles="titles"></tab-control>
+    <tab-control :titles="titles" @itemClick="itemClick"/>
     <goods-list :goods="goods[currentTitles].list"/>
   </div>
 </template>
@@ -62,8 +62,22 @@ export default {
          let data = res.data.list
          this.goods[type].list.push(...data)
          this.goods[type].page += 1
-         console.log(res)
+        //  console.log(res)
        })
+     },
+     itemClick(index) {
+       switch(index) {
+         case 0:
+           this.currentTitles = 'pop'
+           break;
+         case 1:
+           this.currentTitles = 'new'
+           break;
+         case 2:
+           this.currentTitles = 'sell'
+           break
+       }
+
      }
    }
 }
