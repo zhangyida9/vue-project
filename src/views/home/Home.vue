@@ -1,13 +1,15 @@
 <template>
   <div class="home">
     <home-nav-bar/>
-    <scroll :isPullUpLoad="true" :whatProbeType="3" @onPullingUp="loadMore" class="scroll" ref="scroll">
+    <scroll :isPullUpLoad="true" :whatProbeType="3" 
+      @onPullingUp="loadMore" class="scroll" ref="scroll" @scrollPositon="scrollPositon">
       <swiper :banners="banners"></swiper>
       <recommend-view :recommends="recommends"></recommend-view>
       <feture-view/>
       <tab-control :titles="titles" @itemClick="itemClick" ref="tabControl"/>
       <goods-list :goods="goods[currentTitles].list"/>
     </scroll>
+    <back-top @click.native="scrollTop" v-show="isShopBackTop"/>
   </div>
 </template>
 
@@ -15,6 +17,7 @@
 import TabControl from "components/content/tabcontrol/TabControl"
 import GoodsList from "components/content/goods/GoodsList"
 import Scroll from "components/common/scroll/Scroll"
+import BackTop from "components/content/backtop/BackTop"
 
 import HomeNavBar from "./child/HomeNavBar"
 import Swiper from "./child/Swiper"
@@ -28,6 +31,7 @@ export default {
     TabControl,
     GoodsList,
     Scroll,
+    BackTop,
     HomeNavBar,
     Swiper,
     RecommendView,
@@ -43,7 +47,8 @@ export default {
          new: {page: 0, list:[]},
          sell: {page: 0, list:[]}
        },
-       currentTitles: 'pop'
+       currentTitles: 'pop',
+       isShopBackTop: false
      }
    },
    created() {
@@ -86,6 +91,13 @@ export default {
      },
      loadMore() {
        this.getHomeGoods(this.currentTitles)
+     },
+     scrollTop() {
+       this.$refs.scroll.scrollTo(0, 0, 500)
+     },
+     scrollPositon(position) {
+      //  console.log(position)
+       this.isShopBackTop = (-position.y) > 1000
      }
    }
 }
