@@ -1,13 +1,14 @@
 <template>
   <div class="home">
     <home-nav-bar/>
+    <tab-control :titles="titles" @itemClick="itemClick" ref="tabControl" class="tabControl" v-show="isShopTabControl"/>
     <scroll :isPullUpLoad="true" :whatProbeType="3" 
       @onPullingUp="loadMore" class="scroll" ref="scroll" 
       @scrollPositon="scrollPositon" :obServeDom="true" :observeImage="true">
-      <swiper :banners="banners"/>
+      <swiper :banners="banners" @imgLoadOver="imgLoadOver"/>
       <recommend-view :recommends="recommends"/>
       <feture-view/>
-      <tab-control :titles="titles" @itemClick="itemClick" ref="tabControl"/>
+      <tab-control :titles="titles" @itemClick="itemClick" ref="tabControl1"/>
       <goods-list :goods="goods[currentTitles].list"/>
     </scroll>
     <back-top @click.native="scrollTop" v-show="isShopBackTop"/>
@@ -49,7 +50,9 @@ export default {
          sell: {page: 0, list:[]}
        },
        currentTitles: 'pop',
-       isShopBackTop: false
+       isShopBackTop: false,
+       tabOffsetTop: 0,
+       isShopTabControl: false
      }
    },
    created() {
@@ -88,6 +91,7 @@ export default {
            this.currentTitles = 'sell'
            break
        }
+       this.$refs.tabControl1.currentIndex = index
        this.$refs.tabControl.currentIndex = index
      },
      loadMore() {
@@ -99,6 +103,10 @@ export default {
      scrollPositon(position) {
       //  console.log(position)
        this.isShopBackTop = (-position.y) > 1000
+       this.isShopTabControl = (-position.y) > (this.tabOffsetTop)
+     },
+     imgLoadOver() {
+       this.tabOffsetTop = this.$refs.tabControl1.$el.offsetTop
      }
    }
 }
@@ -109,12 +117,20 @@ export default {
   position: relative;
   height: 100vh;
 }
-.scroll{
+.scroll {
   overflow: hidden;
   position: absolute;
-  top: 48px;
+  top: 49px;
   right: 0;
   left: 0;
   bottom: 54px;
+}
+.tabControl {
+  position: fixed;
+  z-index: 9;
+  top: 49px;
+  right: 0;
+  left: 0;
+  background-color: #fff;
 }
 </style>
