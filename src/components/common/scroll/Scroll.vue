@@ -9,7 +9,11 @@
 <script>
 import BScroll from '@better-scroll/core'
 import Pullup from '@better-scroll/pull-up'
+import ObserveDOM from '@better-scroll/observe-dom'
+import ObserveImage from '@better-scroll/observe-image'
 
+BScroll.use(ObserveImage)
+BScroll.use(ObserveDOM)
 BScroll.use(Pullup)
 
 export default {
@@ -30,6 +34,14 @@ export default {
     isShopBackTop: {
       type: Boolean,
       default: false
+    },
+    obServeDom: {
+      type: Boolean,
+      default: false
+    },
+    observeImage: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {
@@ -38,6 +50,8 @@ export default {
       pullUpLoad: this.isPullUpLoad,
       probeType: this.whatProbeType,
       useTransition: false, //解决滑动时模糊
+      obServeDom: this.obServeDom,
+      observeImage: this.observeImage //探测 img 标签的加载
     })
     if(this.isPullUpLoad) {
       this.scroll.on('pullingUp',() => {

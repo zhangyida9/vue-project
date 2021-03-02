@@ -2,9 +2,10 @@
   <div class="home">
     <home-nav-bar/>
     <scroll :isPullUpLoad="true" :whatProbeType="3" 
-      @onPullingUp="loadMore" class="scroll" ref="scroll" @scrollPositon="scrollPositon">
-      <swiper :banners="banners"></swiper>
-      <recommend-view :recommends="recommends"></recommend-view>
+      @onPullingUp="loadMore" class="scroll" ref="scroll" 
+      @scrollPositon="scrollPositon" :obServeDom="true" :observeImage="true">
+      <swiper :banners="banners"/>
+      <recommend-view :recommends="recommends"/>
       <feture-view/>
       <tab-control :titles="titles" @itemClick="itemClick" ref="tabControl"/>
       <goods-list :goods="goods[currentTitles].list"/>
