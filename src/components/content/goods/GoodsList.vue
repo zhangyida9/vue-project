@@ -1,7 +1,7 @@
 <template>
   <div class="good_list">
     <div v-for="(item, index) in goods" :key="index" class="good_item" @click="itemClick(item)">
-      <img :src="item.show.img" alt="" class="item_img">
+      <img :src="item.image || item.show.img" alt="" class="item_img">
       <p class="nowrap item_title">{{ item.title }}</p>
       <div class="item_info">
         <span class="item_info_price">￥{{ item.price }}</span>

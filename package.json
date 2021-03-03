@@ -13,6 +13,7 @@
     "@better-scroll/pull-up": "^2.2.0",
     "axios": "^0.21.1",
     "core-js": "^3.9.0",
+    "moment": "^2.29.1",
     "vant": "^2.8.7",
     "vue": "^2.6.11",
     "vue-router": "^3.2.0"
