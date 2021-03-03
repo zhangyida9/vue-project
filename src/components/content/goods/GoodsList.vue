@@ -1,6 +1,6 @@
 <template>
   <div class="good_list">
-    <div v-for="(item, index) in goods" :key="index" class="good_item">
+    <div v-for="(item, index) in goods" :key="index" class="good_item" @click="itemClick(item)">
       <img :src="item.show.img" alt="" class="item_img">
       <p class="nowrap item_title">{{ item.title }}</p>
       <div class="item_info">
@@ -21,6 +21,11 @@ export default {
       default() {
         return []
       }
+    }
+  },
+  methods: {
+    itemClick(item) {
+      this.$router.push(`/detail/${item.iid}`)
     }
   }
 }
