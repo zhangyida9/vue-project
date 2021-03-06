@@ -11,6 +11,7 @@
       <p class="recommend">推荐商品</p>
       <goods-list :goods="recommended"/>
     </scroll>
+    <detail-bottom-bar @addCart="addCart"/>
   </div>
 </template>
 
@@ -25,6 +26,7 @@ import DetailShopInfo from "./child/DetailShopInfo"
 import DetailDressInfo from "./child/DetailDressInfo"
 import DetailItemParams from "./child/DetailItemParams"
 import DetailCommonInfo from "./child/DetailCommonInfo"
+import DetailBottomBar from "./child/DetailBottomBar"
 
 import {getDetailData, GetDeatilBaseData, GetDetailShopInfo, GetItemParams, getRecommentdData} from "network/detail"
 
@@ -39,7 +41,8 @@ export default {
     DetailShopInfo,
     DetailDressInfo,
     DetailItemParams,
-    DetailCommonInfo
+    DetailCommonInfo,
+    DetailBottomBar
   },
   data() {
     return {
@@ -72,6 +75,18 @@ export default {
     getRecommentdData().then(res => {
       this.recommended = res.data.list
     })
+  },
+  methods: {
+    addCart(){
+      const cartListData = {
+        title : this.baseData.title,
+        desc : this.baseData.desc,
+        iid : this.iid,
+        image : this.topImages[0],
+        price:this.baseData.lowNowPrice
+      }
+    this.$store.dispatch('addCart',cartListData)
+    }
   }
 }
 </script>

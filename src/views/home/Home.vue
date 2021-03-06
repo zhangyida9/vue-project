@@ -73,6 +73,7 @@ export default {
        let page = this.goods[type].page + 1
        return getHomeGoodsData(type, page).then(res =>{
          let data = res.data.list
+        //  console.log(data)
          this.goods[type].list.push(...data)
          this.goods[type].page += 1
          this.$refs.scroll && this.$refs.scroll.finishLoad()

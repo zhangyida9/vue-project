@@ -22,7 +22,7 @@
     },
     data(){
       return {
-        length:this.$store.getters.getCartLength
+        length: this.$store.getters.getCartLength
       }
     },
     watch:{
