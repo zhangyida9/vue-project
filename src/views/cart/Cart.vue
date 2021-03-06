@@ -1,13 +1,31 @@
 <template>
-  <div>购物车</div>
+  <div class="cart">
+    <!--导航-->
+    <cart-nav-bar/>
+
+    <!--内容-->
+    <cart-list/>
+  </div>
 </template>
 
 <script>
-export default {
-
-}
+  import CartNavBar from "./children/CartNavBar";
+  import CartList from "./children/CartList";
+  import Scroll from "components/common/scroll/Scroll";
+  export default {
+    name: "Cart",
+    components:{
+      CartNavBar,
+      CartList,
+      Scroll
+    }
+  }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  .cart{
+    position: relative;
+    height: 100vh;
 
+  }
 </style>

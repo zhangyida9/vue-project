@@ -1,13 +1,30 @@
 <template>
-  <div>我的</div>
+  <div>
+    <profile-nav-bar/>
+    <login/>
+    <money/>
+    <profile-list/>
+  </div>
 </template>
 
 <script>
-export default {
 
-}
+  import ProfileNavBar from "./children/ProfileNavBar";
+  import Login from "./children/Login";
+  import Money from "./children/Money";
+  import ProfileList from "./children/ProfileList";
+  
+  export default {
+    name: "Profile",
+    components:{
+      ProfileNavBar,
+      Login,
+      Money,
+      ProfileList
+    }
+  }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
 </style>
