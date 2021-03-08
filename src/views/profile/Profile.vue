@@ -1,13 +1,16 @@
 <template>
-  <div>
+  <div id="profile">
     <profile-nav-bar/>
-    <login/>
-    <money/>
-    <profile-list/>
+    <scroll class="content">
+      <login/>
+      <money/>
+      <profile-list/>
+    </scroll>  
   </div>
 </template>
 
 <script>
+  import Scroll from "components/common/scroll/Scroll"
 
   import ProfileNavBar from "./children/ProfileNavBar";
   import Login from "./children/Login";
@@ -17,6 +20,7 @@
   export default {
     name: "Profile",
     components:{
+      Scroll,
       ProfileNavBar,
       Login,
       Money,
@@ -26,5 +30,16 @@
 </script>
 
 <style lang="scss" scoped>
-
+ #profile {
+   position: relative;
+   height: 100vh;
+   .content {
+    position: absolute;
+    top: 44px;
+    right: 0;
+    left: 0;
+    bottom: 45vw;
+    z-index: 9;
+   }
+ }
 </style>
